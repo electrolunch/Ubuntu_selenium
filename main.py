@@ -37,8 +37,8 @@ from datetime import datetime
 
 # service_path = r"D:\PProjects\Parsing\chromedriver-win64\chromedriver.exe"
 # browser_path = r"D:\chr\chrome.exe"
-service_path = r"/home/Ubuntu_selenium/chromedriver-linux64"
-browser_path = r"/home/Ubuntu_selenium/chrome-linux64"
+service_path = r"/home/Ubuntu_selenium/chromedriver-linux64/chromedriver"
+browser_path = r"/home/Ubuntu_selenium/chrome-linux64/chrome"
 service = Service(executable_path=service_path)
 # chrome_options = webdriver.ChromeOptions()
 
