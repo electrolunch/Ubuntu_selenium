@@ -64,7 +64,7 @@ logger.addHandler(console_handler)
 # browser_path = r"D:\chr\chrome.exe"
 service_path = r"/home/Ubuntu_selenium/chromedriver-linux64/chromedriver"
 browser_path = r"/home/Ubuntu_selenium/chrome-linux64/chrome"
-service = Service(executable_path=service_path)
+service = Service(executable_path=service_path,service_args=["--verbose", "--log-path=cd.log"])
 chrome_options = webdriver.ChromeOptions()
 
 # userdatadir=r"C:\Users\Sergey\AppData\Local\Google\Chrome for Testing\User Data"
@@ -75,8 +75,8 @@ chrome_options = webdriver.ChromeOptions()
 # chrome_options.add_argument("--incognito")
 # if headless:
 chrome_options.add_argument("--headless")
-chrome_options.add_argument("--verbose")
-chrome_options.add_argument("--log-path=cd.log")
+# chrome_options.add_argument("--verbose")
+# chrome_options.add_argument("--log-path=cd.log")
 # logging.basicConfig(level=logging.DEBUG)
 
 # @retry(stop=stop_after_attempt(3), wait=wait_fixed(5))
