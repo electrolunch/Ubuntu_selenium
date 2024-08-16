@@ -55,16 +55,22 @@ service = Service(executable_path=service_path)
 # @retry(stop=stop_after_attempt(3), wait=wait_fixed(5))
 # def get_driver():
 #     return uc.Chrome(service=service, options=chrome_options,browser_executable_path=browser_path)
+print("Selenium started")
 driver = uc.Chrome(service=service, browser_executable_path=browser_path)
 # driver = uc.Chrome(service=service, options=chrome_options,browser_executable_path=browser_path)
 # driver = get_driver()
 # driver = uc.Chrome()
 # driver.quit()
+print("Chrome started")
 wait = WebDriverWait(driver, 10)
+print("Wait started")
 actions = ActionChains(driver)
+print("Actions started")
 # keyboard=get_keyboard_controller()
 url=r"https://4pda.to/"
+print("URL started")
 driver.get(url)
+print("Get started")
 
 def make_screenshot(driver,tail=""):
     screenshots_path=r""
@@ -72,7 +78,9 @@ def make_screenshot(driver,tail=""):
     driver.get_screenshot_as_file(os.path.join(screenshots_path, f"{cur_time}{tail}.png"))
     return cur_time
 
+print("Screenshot started")
 make_screenshot(driver,tail="")
+print("Screenshot ended")
 driver.quit()
 # page_sourse=driver.page_source
 
