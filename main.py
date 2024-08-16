@@ -66,7 +66,7 @@ service_path = r"/home/Ubuntu_selenium/chromedriver-linux64/chromedriver"
 browser_path = r"/home/Ubuntu_selenium/chrome-linux64/chrome"
 service = Service(executable_path=service_path)
 service.LogPath = r"chromedriver.log"
-service.EnableVerboseLogging = true
+service.EnableVerboseLogging = True
 chrome_options = webdriver.ChromeOptions()
 
 # userdatadir=r"C:\Users\Sergey\AppData\Local\Google\Chrome for Testing\User Data"
