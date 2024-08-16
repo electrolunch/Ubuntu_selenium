@@ -75,11 +75,14 @@ chrome_options = webdriver.ChromeOptions()
 # chrome_options.add_argument("--incognito")
 # if headless:
 chrome_options.add_argument("--headless")
+chrome_options.add_argument("--verbose")
+chrome_options.add_argument("--log-path=cd.log")
 # logging.basicConfig(level=logging.DEBUG)
 
 # @retry(stop=stop_after_attempt(3), wait=wait_fixed(5))
 # def get_driver():
 #     return uc.Chrome(service=service, options=chrome_options,browser_executable_path=browser_path)
+driver = None
 print("Selenium started")
 try:
     driver = uc.Chrome(service=service, options=chrome_options,browser_executable_path=browser_path)
