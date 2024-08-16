@@ -73,7 +73,7 @@ def make_screenshot(driver,tail=""):
     return cur_time
 
 make_screenshot(driver,tail="")
-
+driver.quit()
 # page_sourse=driver.page_source
 
 # with open('page_source.html', 'w', encoding='utf-8') as f:
