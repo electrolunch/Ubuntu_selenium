@@ -88,6 +88,7 @@ try:
     driver = uc.Chrome(service=service, options=chrome_options,browser_executable_path=browser_path)
 except Exception as e:
     logger.info(e)
+    raise e
 
 try:
     driver = uc.Chrome(service=service, options=chrome_options,browser_executable_path=browser_path)
