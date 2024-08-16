@@ -15,11 +15,36 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
-# import logging
+import logging
 # import requests
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.keys import Keys
 from datetime import datetime
+
+
+# Create a logger
+logger = logging.getLogger(__name__)
+
+# Set the logging level
+logger.setLevel(logging.INFO)
+
+# Create a file handler
+file_handler = logging.FileHandler('log_file.log')
+
+# Create a console handler
+console_handler = logging.StreamHandler()
+
+# Create a formatter and set it for both handlers
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+file_handler.setFormatter(formatter)
+console_handler.setFormatter(formatter)
+
+# Add both handlers to the logger
+logger.addHandler(file_handler)
+logger.addHandler(console_handler)
+
+# Log a message
+
 # import time as t
 # import subprocess
 # from PIL import Image
@@ -40,7 +65,7 @@ from datetime import datetime
 service_path = r"/home/Ubuntu_selenium/chromedriver-linux64/chromedriver"
 browser_path = r"/home/Ubuntu_selenium/chrome-linux64/chrome"
 service = Service(executable_path=service_path)
-# chrome_options = webdriver.ChromeOptions()
+chrome_options = webdriver.ChromeOptions()
 
 # userdatadir=r"C:\Users\Sergey\AppData\Local\Google\Chrome for Testing\User Data"
 # userdatadir = r"C:\Users\Sergey\AppData\Local\Google\Chrome\User Data\Profile 1"
@@ -49,14 +74,18 @@ service = Service(executable_path=service_path)
 # chrome_options.add_argument(r'--profile-directory=Profile 2')
 # chrome_options.add_argument("--incognito")
 # if headless:
-# chrome_options.add_argument("--headless")
+chrome_options.add_argument("--headless")
 # logging.basicConfig(level=logging.DEBUG)
 
 # @retry(stop=stop_after_attempt(3), wait=wait_fixed(5))
 # def get_driver():
 #     return uc.Chrome(service=service, options=chrome_options,browser_executable_path=browser_path)
 print("Selenium started")
-driver = uc.Chrome(service=service, browser_executable_path=browser_path)
+try:
+    driver = uc.Chrome(service=service, options=chrome_options,browser_executable_path=browser_path)
+except Exception as e:
+    logger.info(e)
+
 # driver = uc.Chrome(service=service, options=chrome_options,browser_executable_path=browser_path)
 # driver = get_driver()
 # driver = uc.Chrome()
