@@ -64,7 +64,9 @@ logger.addHandler(console_handler)
 # browser_path = r"D:\chr\chrome.exe"
 service_path = r"/home/Ubuntu_selenium/chromedriver-linux64/chromedriver"
 browser_path = r"/home/Ubuntu_selenium/chrome-linux64/chrome"
-service = Service(executable_path=service_path,service_args=["--verbose", "--log-path=cd.log"])
+service = Service(executable_path=service_path)
+service.LogPath = r"chromedriver.log"
+service.EnableVerboseLogging = true
 chrome_options = webdriver.ChromeOptions()
 
 # userdatadir=r"C:\Users\Sergey\AppData\Local\Google\Chrome for Testing\User Data"
