@@ -35,8 +35,10 @@ from datetime import datetime
 # config.read(r"D:\PProjects\libs\parsing\config.ini")
 # from tenacity import retry, stop_after_attempt, wait_fixed
 
-service_path = r"D:\PProjects\Parsing\chromedriver-win64\chromedriver.exe"
-browser_path = r"D:\chr\chrome.exe"
+# service_path = r"D:\PProjects\Parsing\chromedriver-win64\chromedriver.exe"
+# browser_path = r"D:\chr\chrome.exe"
+service_path = r"chrome-linux64/"
+browser_path = r"chromedriver-linux64/"
 service = Service(executable_path=service_path)
 # chrome_options = webdriver.ChromeOptions()
 
