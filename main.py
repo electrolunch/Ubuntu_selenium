@@ -62,8 +62,8 @@ logger.addHandler(console_handler)
 
 # service_path = r"D:\PProjects\Parsing\chromedriver-win64\chromedriver.exe"
 # browser_path = r"D:\chr\chrome.exe"
-service_path = r"/chromedriver-linux64/chromedriver"
-browser_path = r"/chrome-linux64/chrome"
+service_path = r"./chromedriver-linux64/chromedriver"
+browser_path = r"./chrome-linux64/chrome"
 service = Service(executable_path=service_path,service_args=["--verbose", "--log-path=cd.log"])
 chrome_options = webdriver.ChromeOptions()
 
@@ -90,15 +90,15 @@ except Exception as e:
     logger.info(e)
     raise e
 
-try:
-    driver = uc.Chrome(service=service, options=chrome_options,browser_executable_path=browser_path)
-except Exception as e:
-    logger.info(e)
+# try:
+#     driver = uc.Chrome(service=service, options=chrome_options,browser_executable_path=browser_path)
+# except Exception as e:
+#     logger.info(e)
 
-try:
-    driver = uc.Chrome(service=service, options=chrome_options,browser_executable_path=browser_path)
-except Exception as e:
-    logger.info(e)
+# try:
+#     driver = uc.Chrome(service=service, options=chrome_options,browser_executable_path=browser_path)
+# except Exception as e:
+#     logger.info(e)
 
 # driver = uc.Chrome(service=service, options=chrome_options,browser_executable_path=browser_path)
 # driver = get_driver()
