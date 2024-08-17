@@ -83,6 +83,7 @@ chrome_options.add_argument("--disable-gpu")
 chrome_options.add_argument("--disable-extensions")
 chrome_options.add_argument("disable-infobars")
 chrome_options.add_argument("start-maximized")
+chrome_options.binary_location = browser_path
 # chrome_options.add_argument("--verbose")
 # chrome_options.add_argument("--log-path=cd.log")
 # logging.basicConfig(level=logging.DEBUG)
@@ -93,7 +94,8 @@ chrome_options.add_argument("start-maximized")
 driver = None
 print("Selenium started")
 try:
-    driver = uc.Chrome(service=service, options=chrome_options,browser_executable_path=browser_path)
+    # driver = uc.Chrome(service=service, options=chrome_options,browser_executable_path=browser_path)
+    driver = uc.Chrome(service=service, options=chrome_options)
 except Exception as e:
     logger.info(e)
     raise e
