@@ -1,5 +1,5 @@
 # import json
-# import os
+import os
 # from PIL import Image
 # import re
 # import glob
@@ -20,7 +20,7 @@ import logging
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.keys import Keys
 from datetime import datetime
-
+import time
 
 # Create a logger
 logger = logging.getLogger(__name__)
@@ -75,6 +75,8 @@ chrome_options = webdriver.ChromeOptions()
 # chrome_options.add_argument("--incognito")
 # if headless:
 chrome_options.add_argument("--headless")
+chrome_options.add_argument("--no-sandbox")
+chrome_options.add_argument("--disable-dev-shm-usage")
 # chrome_options.add_argument("--verbose")
 # chrome_options.add_argument("--log-path=cd.log")
 # logging.basicConfig(level=logging.DEBUG)
@@ -124,6 +126,8 @@ def make_screenshot(driver,tail=""):
 print("Screenshot started")
 make_screenshot(driver,tail="")
 print("Screenshot ended")
+time.sleep(10)
+
 driver.quit()
 # page_sourse=driver.page_source
 
