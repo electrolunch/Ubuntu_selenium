@@ -60,10 +60,10 @@ logger.addHandler(console_handler)
 # config.read(r"D:\PProjects\libs\parsing\config.ini")
 # from tenacity import retry, stop_after_attempt, wait_fixed
 
-# service_path = r"D:\PProjects\Parsing\chromedriver-win64\chromedriver.exe"
-# browser_path = r"D:\chr\chrome.exe"
-service_path = r"./chromedriver-linux64/chromedriver"
-browser_path = r"./chrome-linux64/chrome"
+service_path = r"D:\PProjects\Parsing\chromedriver-win64\chromedriver.exe"
+browser_path = r"D:\chr\chrome.exe"
+# service_path = r"./chromedriver-linux64/chromedriver"
+# browser_path = r"./chrome-linux64/chrome"
 service = Service(executable_path=service_path,service_args=["--verbose", "--log-path=cd.log"])
 chrome_options = webdriver.ChromeOptions()
 
@@ -80,10 +80,10 @@ chrome_options.add_argument("--disable-dev-shm-usage")
 # chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
 # chrome_options.add_experimental_option('useAutomationExtension', False)
 chrome_options.add_argument("--disable-gpu")
-chrome_options.add_argument("--disable-extensions")
-chrome_options.add_argument("disable-infobars")
-chrome_options.add_argument("start-maximized")
-chrome_options.binary_location = browser_path
+# chrome_options.add_argument("--disable-extensions")
+# chrome_options.add_argument("disable-infobars")
+# chrome_options.add_argument("start-maximized")
+# chrome_options.binary_location = browser_path
 # chrome_options.add_argument("--verbose")
 # chrome_options.add_argument("--log-path=cd.log")
 # logging.basicConfig(level=logging.DEBUG)
@@ -94,16 +94,16 @@ chrome_options.binary_location = browser_path
 driver = None
 print("Selenium started")
 try:
-    # driver = uc.Chrome(service=service, options=chrome_options,browser_executable_path=browser_path)
-    driver = uc.Chrome(service=service, options=chrome_options)
+    driver = uc.Chrome(service=service, options=chrome_options,browser_executable_path=browser_path)
+    # driver = uc.Chrome(service=service, options=chrome_options)
 except Exception as e:
     logger.info(e)
     raise e
 
-# try:
+# try:                              
 #     driver = uc.Chrome(service=service, options=chrome_options,browser_executable_path=browser_path)
-# except Exception as e:
-#     logger.info(e)
+# except Exception as e:          
+#     logger.info(e)                    
 
 # try:
 #     driver = uc.Chrome(service=service, options=chrome_options,browser_executable_path=browser_path)
