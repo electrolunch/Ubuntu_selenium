@@ -60,10 +60,10 @@ logger.addHandler(console_handler)
 # config.read(r"D:\PProjects\libs\parsing\config.ini")
 # from tenacity import retry, stop_after_attempt, wait_fixed
 
-service_path = r"D:\PProjects\Parsing\chromedriver-win64\chromedriver.exe"
-browser_path = r"D:\chr\chrome.exe"
-# service_path = r"./chromedriver-linux64/chromedriver"
-# browser_path = r"./chrome-linux64/chrome"
+# service_path = r"D:\PProjects\Parsing\chromedriver-win64\chromedriver.exe"
+# browser_path = r"D:\chr\chrome.exe"
+service_path = r"./chromedriver-linux64/chromedriver"
+browser_path = r"./chrome-linux64/chrome"
 service = Service(executable_path=service_path,service_args=["--verbose", "--log-path=cd.log"])
 chrome_options = webdriver.ChromeOptions()
 
