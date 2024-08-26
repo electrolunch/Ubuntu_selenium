@@ -107,6 +107,30 @@ def log_webdriver_caps(caps, filename=r"caps_logs.txt"):
     # logging.info(f"Исходный код страницы: {page_source}")  # Раскомментируйте, если нужен исходный код
     logging.info("=== End log state WebDriver ===")
 
+def remove_capability(capabilities, key_to_remove):
+  """
+  Удаляет параметр из объекта capabilities.
+
+  :param capabilities: Словарь capabilities.
+  :param key_to_remove: Ключ удаляемого параметра.
+  """
+
+  try:
+    # Проверяем наличие ключа в "alwaysMatch"
+    if key_to_remove in capabilities["capabilities"]["alwaysMatch"]:
+      del capabilities["capabilities"]["alwaysMatch"][key_to_remove]
+      print(f"Параметр '{key_to_remove}' успешно удален из capabilities.")
+    # Проверяем наличие ключа в "goog:chromeOptions"
+    elif key_to_remove in capabilities["capabilities"]["alwaysMatch"].get("goog:chromeOptions", {}):
+      del capabilities["capabilities"]["alwaysMatch"]["goog:chromeOptions"][key_to_remove]
+      print(f"Параметр '{key_to_remove}' успешно удален из capabilities.")
+    else:
+      print(f"Параметр '{key_to_remove}' не найден в capabilities.")
+  except KeyError:
+    print(f"Ошибка: Неверный формат capabilities.")
+
+  return capabilities
+
 def get_remote_connection(capabilities, command_executor, keep_alive, ignore_local_proxy=False):
     from selenium.webdriver.chrome.remote_connection import ChromeRemoteConnection
     from selenium.webdriver.edge.remote_connection import EdgeRemoteConnection
@@ -308,6 +332,8 @@ class WebDriver(BaseWebDriver):
         """
 
         caps = _create_caps(capabilities)
+        remove_capability(caps, "debuggerAddress")
+
         log_webdriver_caps(caps)
         response = self.execute(Command.NEW_SESSION, caps)["value"]
         self.session_id = response.get("sessionId")

@@ -15,8 +15,8 @@ INFO:root:Capabilities: {
                     "--disable-dev-shm-usage",
                     "--disable-gpu",
                     "--remote-debugging-host=127.0.0.1",
-                    "--remote-debugging-port=58676",
-                    "--user-data-dir=C:\\Temp\\tmpc_i9bsul",
+                    "--remote-debugging-port=65462",
+                    "--user-data-dir=C:\\Temp\\tmpmbfj7l52",
                     "--lang=en-US",
                     "--no-default-browser-check",
                     "--no-first-run",
@@ -27,10 +27,43 @@ INFO:root:Capabilities: {
                     "--start-maximized",
                     "--no-sandbox",
                     "--log-level=0"
-                ],
-                "debuggerAddress": "127.0.0.1:58676"
+                ]
             }
         }
     }
 }
 INFO:root:=== End log state WebDriver ===
+INFO:__main__:=== \u041d\u0430\u0447\u0430\u043b\u043e \u043b\u043e\u0433\u0430 \u0441\u043e\u0441\u0442\u043e\u044f\u043d\u0438\u044f WebDriver ===
+INFO:__main__:\u0422\u0435\u043a\u0443\u0449\u0438\u0439 URL: chrome://new-tab-page/
+INFO:__main__:\u0417\u0430\u0433\u043e\u043b\u043e\u0432\u043e\u043a \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u044b: New Tab
+INFO:__main__:Capabilities: {
+    "acceptInsecureCerts": false,
+    "browserName": "chrome",
+    "browserVersion": "128.0.6613.84",
+    "chrome": {
+        "chromedriverVersion": "128.0.6613.84 (606aa55c7d687518d34b55accc5a71ea0bd28727-refs/branch-heads/6613@{#1335})",
+        "userDataDir": "C:\\Temp\\tmpmbfj7l52"
+    },
+    "fedcm:accounts": true,
+    "goog:chromeOptions": {
+        "debuggerAddress": "localhost:65462"
+    },
+    "networkConnectionEnabled": false,
+    "pageLoadStrategy": "normal",
+    "platformName": "windows",
+    "proxy": {},
+    "setWindowRect": true,
+    "strictFileInteractability": false,
+    "timeouts": {
+        "implicit": 0,
+        "pageLoad": 300000,
+        "script": 30000
+    },
+    "unhandledPromptBehavior": "dismiss and notify",
+    "webauthn:extension:credBlob": true,
+    "webauthn:extension:largeBlob": true,
+    "webauthn:extension:minPinLength": true,
+    "webauthn:extension:prf": true,
+    "webauthn:virtualAuthenticators": true
+}
+INFO:__main__:=== \u041a\u043e\u043d\u0435\u0446 \u043b\u043e\u0433\u0430 \u0441\u043e\u0441\u0442\u043e\u044f\u043d\u0438\u044f WebDriver ===

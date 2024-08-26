@@ -4,6 +4,7 @@ import os
 # import re
 # import glob
 
+import platform
 # from dotenv import load_dotenv
 # load_dotenv(r"D:\PProjects\NN\tavily\.env")
 import undetected_chromedriver as uc
@@ -60,10 +61,30 @@ logger.addHandler(console_handler)
 # config.read(r"D:\PProjects\libs\parsing\config.ini")
 # from tenacity import retry, stop_after_attempt, wait_fixed
 
-# service_path = r"D:\PProjects\Parsing\chromedriver-win64\chromedriver.exe"
-# browser_path = r"D:\chr\chrome.exe"
-service_path = r"./chromedriver-linux64/chromedriver"
-browser_path = r"./chrome-linux64/chrome"
+
+
+def get_platform_paths():
+    """
+    Возвращает пути к ChromeDriver и Chrome в зависимости от платформы.
+    """
+
+    system = platform.system()
+    if system == "Windows":
+        service_path = r"D:\PProjects\Parsing\chromedriver-win64\chromedriver.exe"
+        browser_path = r"D:\chr\chrome.exe"
+    elif system == "Linux":
+        service_path = r"./chromedriver-linux64/chromedriver"
+        browser_path = r"./chrome-linux64/chrome"
+    else:
+        raise OSError(f"Unsupported operating system: {system}")
+
+    return service_path, browser_path
+
+    # Пример использования:
+
+service_path, browser_path = get_platform_paths()
+
+
 service = Service(executable_path=service_path,service_args=["--verbose", "--log-path=cd.log"])
 chrome_options = webdriver.ChromeOptions()
 
