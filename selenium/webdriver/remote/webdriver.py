@@ -332,7 +332,12 @@ class WebDriver(BaseWebDriver):
         """
 
         caps = _create_caps(capabilities)
-        remove_capability(caps, "debuggerAddress")
+        # Удаляем параметр "debuggerAddress"
+        caps = remove_capability(caps, "debuggerAddress")
+
+        # Удаляем параметры, содержащие "--remote-debugging-host" и "--remote-debugging-port"
+        caps = remove_capability(caps, "--remote-debugging-host")
+        caps = remove_capability(caps, "--remote-debugging-port")
 
         log_webdriver_caps(caps)
         response = self.execute(Command.NEW_SESSION, caps)["value"]
