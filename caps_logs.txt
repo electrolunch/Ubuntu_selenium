@@ -1,0 +1,36 @@
+INFO:root:=== Begin log state WebDriver ===
+INFO:root:Capabilities: {
+    "capabilities": {
+        "firstMatch": [
+            {}
+        ],
+        "alwaysMatch": {
+            "browserName": "chrome",
+            "pageLoadStrategy": "normal",
+            "goog:chromeOptions": {
+                "extensions": [],
+                "binary": "D:\\chr\\chrome.exe",
+                "args": [
+                    "--no-sandbox",
+                    "--disable-dev-shm-usage",
+                    "--disable-gpu",
+                    "--remote-debugging-host=127.0.0.1",
+                    "--remote-debugging-port=58676",
+                    "--user-data-dir=C:\\Temp\\tmpc_i9bsul",
+                    "--lang=en-US",
+                    "--no-default-browser-check",
+                    "--no-first-run",
+                    "--no-sandbox",
+                    "--test-type",
+                    "--headless=new",
+                    "--window-size=1920,1080",
+                    "--start-maximized",
+                    "--no-sandbox",
+                    "--log-level=0"
+                ],
+                "debuggerAddress": "127.0.0.1:58676"
+            }
+        }
+    }
+}
+INFO:root:=== End log state WebDriver ===

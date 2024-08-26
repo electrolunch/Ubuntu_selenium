@@ -91,10 +91,68 @@ chrome_options.add_argument("--disable-gpu")
 # @retry(stop=stop_after_attempt(3), wait=wait_fixed(5))
 # def get_driver():
 #     return uc.Chrome(service=service, options=chrome_options,browser_executable_path=browser_path)
+import logging
+import json
+
+def log_webdriver_state(driver, logger):
+    """
+    Логирует текущее состояние WebDriver в файл.
+
+    :param driver: Объект WebDriver.
+    :param filename: Имя файла для логирования.
+    """
+
+    # logging.basicConfig(filename=filename, level=logging.INFO)
+
+    try:
+        # Получаем текущий URL
+        current_url = driver.current_url
+    except Exception as e:
+        current_url = f"Ошибка получения URL: {str(e)}"
+
+    try:
+        # Получаем исходный код страницы
+        page_source = driver.page_source
+    except Exception as e:
+        page_source = f"Ошибка получения исходного кода: {str(e)}"
+
+    try:
+        # Получаем заголовок страницы
+        page_title = driver.title
+    except Exception as e:
+        page_title = f"Ошибка получения заголовка: {str(e)}"
+
+    try:
+        # Получаем capabilities
+        capabilities = driver.capabilities
+    except Exception as e:
+        capabilities = f"Ошибка получения capabilities: {str(e)}"
+
+    # Логируем информацию
+    logger.info("=== Начало лога состояния WebDriver ===")
+    logger.info(f"Текущий URL: {current_url}")
+    logger.info(f"Заголовок страницы: {page_title}")
+    logger.info(f"Capabilities: {json.dumps(capabilities, indent=4)}")
+    # logging.info(f"Исходный код страницы: {page_source}")  # Раскомментируйте, если нужен исходный код
+    logger.info("=== Конец лога состояния WebDriver ===")
+
+def log_webdriver_caps(caps, filename=r"D:\PProjects\Ubuntu_selenium\caps_logs.txt"):
+    logging.basicConfig(filename=filename, level=logging.INFO)
+    
+    capabilities = caps
+
+    # Логируем информацию
+    logging.info("=== Начало лога состояния WebDriver ===")
+    logging.info(f"Capabilities: {json.dumps(capabilities, indent=4)}")
+    # logging.info(f"Исходный код страницы: {page_source}")  # Раскомментируйте, если нужен исходный код
+    logging.info("=== Конец лога состояния WebDriver ===")
+
 driver = None
 print("Selenium started")
 try:
+    # log_webdriver_state(driver)
     driver = uc.Chrome(service=service, options=chrome_options,browser_executable_path=browser_path)
+    log_webdriver_state(driver, logger)
     # driver = uc.Chrome(service=service, options=chrome_options)
 except Exception as e:
     logger.info(e)
@@ -136,7 +194,11 @@ make_screenshot(driver,tail="")
 print("Screenshot ended")
 time.sleep(10)
 
-driver.quit()
+try:
+    driver.quit()
+except Exception as e:
+    logger.info(e)
+# driver.quit()
 # page_sourse=driver.page_source
 
 # with open('page_source.html', 'w', encoding='utf-8') as f:

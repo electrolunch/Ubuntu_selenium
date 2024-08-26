@@ -19,6 +19,8 @@ import base64
 import contextlib
 import copy
 import os
+import logging
+import json
 import pkgutil
 import tempfile
 import types
@@ -94,6 +96,16 @@ def _create_caps(caps):
         always_match[k] = v
     return {"capabilities": {"firstMatch": [{}], "alwaysMatch": always_match}}
 
+def log_webdriver_caps(caps, filename=r"caps_logs.txt"):
+    logging.basicConfig(filename=filename, level=logging.INFO)
+    
+    capabilities = caps
+
+    # Логируем информацию
+    logging.info("=== Begin log state WebDriver ===")
+    logging.info(f"Capabilities: {json.dumps(capabilities, indent=4)}")
+    # logging.info(f"Исходный код страницы: {page_source}")  # Раскомментируйте, если нужен исходный код
+    logging.info("=== End log state WebDriver ===")
 
 def get_remote_connection(capabilities, command_executor, keep_alive, ignore_local_proxy=False):
     from selenium.webdriver.chrome.remote_connection import ChromeRemoteConnection
@@ -296,6 +308,7 @@ class WebDriver(BaseWebDriver):
         """
 
         caps = _create_caps(capabilities)
+        log_webdriver_caps(caps)
         response = self.execute(Command.NEW_SESSION, caps)["value"]
         self.session_id = response.get("sessionId")
         self.caps = response.get("capabilities")
