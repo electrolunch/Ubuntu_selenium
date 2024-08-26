@@ -124,6 +124,13 @@ def remove_capability(capabilities, key_to_remove):
     elif key_to_remove in capabilities["capabilities"]["alwaysMatch"].get("goog:chromeOptions", {}):
       del capabilities["capabilities"]["alwaysMatch"]["goog:chromeOptions"][key_to_remove]
       print(f"Параметр '{key_to_remove}' успешно удален из capabilities.")
+    # Удаляем параметры из списка "args"
+    if "goog:chromeOptions" in capabilities["capabilities"]["alwaysMatch"]:
+      args = capabilities["capabilities"]["alwaysMatch"]["goog:chromeOptions"].get("args", [])
+      capabilities["capabilities"]["alwaysMatch"]["goog:chromeOptions"]["args"] = [
+          arg for arg in args if key_to_remove not in arg
+      ]
+      print(f"Параметры, содержащие '{key_to_remove}', успешно удалены из списка 'args'.")
     else:
       print(f"Параметр '{key_to_remove}' не найден в capabilities.")
   except KeyError:
