@@ -138,6 +138,42 @@ def remove_capability(capabilities, key_to_remove):
 
   return capabilities
 
+def replace_capability(capabilities, key_to_replace, new_value):
+  """
+  Заменяет значение параметра в объекте capabilities.
+
+  :param capabilities: Словарь capabilities.
+  :param key_to_replace: Ключ заменяемого параметра.
+  :param new_value: Новое значение параметра.
+  """
+
+  try:
+    # Проверяем наличие ключа в "alwaysMatch"
+    if key_to_replace in capabilities["capabilities"]["alwaysMatch"]:
+      capabilities["capabilities"]["alwaysMatch"][key_to_replace] = new_value
+      print(f"Значение параметра '{key_to_replace}' успешно заменено на '{new_value}'.")
+    # Проверяем наличие ключа в "goog:chromeOptions"
+    elif key_to_replace in capabilities["capabilities"]["alwaysMatch"].get("goog:chromeOptions", {}):
+      capabilities["capabilities"]["alwaysMatch"]["goog:chromeOptions"][key_to_replace] = new_value
+      print(f"Значение параметра '{key_to_replace}' успешно заменено на '{new_value}'.")
+    # Заменяем параметр в списке "args"
+    elif "goog:chromeOptions" in capabilities["capabilities"]["alwaysMatch"]:
+      args = capabilities["capabilities"]["alwaysMatch"]["goog:chromeOptions"].get("args", [])
+      new_args = []
+      for arg in args:
+        if key_to_replace in arg:
+          new_args.append(arg.replace(key_to_replace, new_value))
+        else:
+          new_args.append(arg)
+      capabilities["capabilities"]["alwaysMatch"]["goog:chromeOptions"]["args"] = new_args
+      print(f"Параметр '{key_to_replace}' в списке 'args' успешно заменен на '{new_value}'.")
+    else:
+      print(f"Параметр '{key_to_replace}' не найден в capabilities.")
+  except KeyError:
+    print(f"Ошибка: Неверный формат capabilities.")
+
+  return capabilities
+
 def get_remote_connection(capabilities, command_executor, keep_alive, ignore_local_proxy=False):
     from selenium.webdriver.chrome.remote_connection import ChromeRemoteConnection
     from selenium.webdriver.edge.remote_connection import EdgeRemoteConnection
@@ -345,6 +381,7 @@ class WebDriver(BaseWebDriver):
         # Удаляем параметры, содержащие "--remote-debugging-host" и "--remote-debugging-port"
         caps = remove_capability(caps, "--remote-debugging-host")
         caps = remove_capability(caps, "--remote-debugging-port")
+        caps = remove_capability(caps, "--user-data-dir")
 
         log_webdriver_caps(caps)
         response = self.execute(Command.NEW_SESSION, caps)["value"]
